@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "pagelioz saving books and purchasing books",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node server/index",
     "server": "nodemon server/index",
