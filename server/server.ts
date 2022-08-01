@@ -1,12 +1,9 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import colors from 'colors'
-import connectDB from './config/db.js'
-import { signupRouter } from './routes/users/signup.js'
-import { currentUserRouter } from './routes/users/currentUser.js'
+import { signupRouter } from './routes/users/signup'
+import { currentUserRouter } from './routes/users/currentUser'
 
 dotenv.config()
-connectDB()
 
 const server = express()
 const baseUserApiV1 = '/api/v1/users'

@@ -1,12 +1,12 @@
-import express from 'express'
-import User from '../../models/userModel.js'
+import express, { Request, Response } from 'express'
+import User from '../../models/userModel'
 
 const router = express.Router()
 
 // @desc    Get user profile
 // @route   GET /api/v1/users/profile
 // @access  Private
-router.get('/profile', async (req, res) => {
+router.get('/profile', async (req: Request, res: Response) => {
   const user = await User.findById(req.body)
 
   if (user) {

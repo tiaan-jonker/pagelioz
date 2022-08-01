@@ -1,6 +1,22 @@
 import mongoose from 'mongoose'
 const { Schema } = mongoose
-import { PasswordManager } from '../utils/passwordManager.js'
+import { PasswordManager } from '../utils/passwordManager'
+
+interface UserAttrs {
+  name: string
+  email: string
+  password: string
+}
+
+interface UserModel extends mongoose.Model<UserDoc> {
+  build(attrs: UserAttrs): UserDoc
+}
+
+interface UserDoc extends mongoose.Document {
+  name: string
+  email: string
+  password: string
+}
 
 const userSchema = new Schema(
   {
@@ -31,6 +47,10 @@ userSchema.pre('save', async function (done) {
   done()
 })
 
-const User = mongoose.model('User', userSchema)
+userSchema.statics.build = (attrs: UserAttrs) => {
+  return new User(attrs)
+}
+
+const User = mongoose.model<UserDoc, UserModel>('User', userSchema)
 
 export default User
