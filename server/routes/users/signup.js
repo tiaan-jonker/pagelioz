@@ -1,7 +1,7 @@
 import express from 'express'
 import { body, validationResult } from 'express-validator'
-import { validateRequest } from '../../middleware/validateReq.js'
 import User from '../../models/userModel.js'
+import generateToken from '../../utils/generateToken.js'
 
 const router = express.Router()
 
@@ -38,6 +38,7 @@ router.post(
         _id: user._id,
         name: user.name,
         email: user.email,
+        token: generateToken(user._id),
       })
     } else {
       res.status(400)
