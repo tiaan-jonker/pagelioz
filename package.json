@@ -4,7 +4,7 @@
   "description": "pagelioz saving books and purchasing books",
   "main": "index.ts",
   "scripts": {
-    "start": "node server/index",
+    "start": "node server/index.jsx",
     "server": "nodemon server/index.ts",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
