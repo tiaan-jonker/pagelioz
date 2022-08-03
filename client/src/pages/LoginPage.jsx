@@ -14,7 +14,6 @@ const LoginPage = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
     dispatch(login(email, password))
-    console.log(userLogin)
   }
 
   return (

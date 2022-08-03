@@ -1,26 +1,26 @@
-import express, { Request, Response } from 'express'
+import express from 'express'
+import expressAsyncHandler from 'express-async-handler'
 import { body, validationResult } from 'express-validator'
-import User from '../../models/userModel'
-import generateToken from '../../utils/generateToken'
+import User from '../../models/userModel.js'
+import generateToken from '../../utils/generateToken.js'
 
 const router = express.Router()
 
 // @desc    Register a new user
 // @route   POST /api/v1/users/signup
 // @access  Public
-router.post(
-  '/signup',
-  [
-    body('email', 'Please include a valid email').isEmail(),
-    body('password', 'Password length must be between 6 and 20 characters')
-      .trim()
-      .isLength({ min: 6, max: 20 }),
-  ],
-  async (req: Request, res: Response) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() })
-    }
+const registerUser = expressAsyncHandler(
+  // [
+  //   body('email', 'Please include a valid email').isEmail(),
+  //   body('password', 'Password length must be between 6 and 20 characters')
+  //     .trim()
+  //     .isLength({ min: 6, max: 20 }),
+  // ],
+  async (req, res) => {
+    // const errors = validationResult(req)
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).json({ errors: errors.array() })
+    // }
 
     const { name, email, password } = req.body
 
@@ -47,4 +47,4 @@ router.post(
   }
 )
 
-export { router as signupRouter }
+export { registerUser }

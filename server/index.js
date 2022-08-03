@@ -1,6 +1,6 @@
-import connectDB from './config/db'
-import server from './server'
-const colors = require('colors')
+import connectDB from './config/db.js'
+import server from './server.js'
+import colors from 'colors'
 
 const startServer = async () => {
   try {
